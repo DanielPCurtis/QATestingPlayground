@@ -31,7 +31,7 @@ public class Selenium {
     /**
      * 
      * 
-     * @param wd
+     * @param wd (Chrome Driver)
      */
     private static void titleTest(WebDriver wd)	{
     	String expectedTitle = "Facebook";
@@ -107,7 +107,17 @@ public class Selenium {
 			System.out.println(" uh oh something is wrong");
 		}
 		//linkText Example
-		
+		//find element by innerText of Login Button
+		//Test: verify the element found is the Login Button I wanted
+		String log = "Login";
+		WebElement login = wd.findElement( By.linkText("Login"));
+		String loginAnswer = "Button";
+		if( login.getTagName().contentEquals( loginAnswer ) ) {
+			System.out.println("Login Button selected");
+		}
+		else	{
+			System.out.println(" uh oh something is wrong");
+		}
 	}
 		
 }
