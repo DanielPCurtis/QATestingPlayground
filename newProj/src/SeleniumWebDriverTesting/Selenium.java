@@ -34,10 +34,10 @@ public class Selenium {
      * @param wd (Chrome Driver)
      */
     private static void titleTest(WebDriver wd)	{
-    	String expectedTitle = "Facebook";
+    	String expectedTitle = "Facebook - Log In or Sign Up";
         // get the actual value of the title
         String title = wd.getTitle();
-
+        System.out.println(title);
         /*
          * compare the actual title of the page with the expected one and print
          * the result as "Passed" or "Failed"
@@ -56,7 +56,7 @@ public class Selenium {
 		WebElement cn = wd.findElement(By.className("_6ltg"));
 		String tagName = cn.getTagName();
 		if(tagName.contentEquals("div")) {
-			System.out.println("className locator test passed");
+			System.out.println("className locator test Passed");
 		}
 		else	{
             System.out.println("Test Failed");
@@ -79,7 +79,7 @@ public class Selenium {
 		select = cs.getAttribute("value");
 		//System.out.println(select);
 		if(select.contentEquals(em))	{
-			System.out.println("email has been entered");
+			System.out.println("Enter email Text Test Passed");
 		}
 		else	{
 			System.out.println(" uh oh something is wrong");
@@ -101,25 +101,27 @@ public class Selenium {
 		id.sendKeys(pw);
 		passwordAnswer = id.getAttribute("value");
 		if( passwordAnswer.contentEquals( pw )) {
-			System.out.println("password has been entered");
+			System.out.println("Enter Password Text Test Passed");
 		}
 		else	{
 			System.out.println(" uh oh something is wrong");
 		}
 		//linkText Example
-		//find element by innerText of Login Button
-		//Test: verify the element found is the Login Button I wanted
-		String log = "Login";
-		WebElement login = wd.findElement( By.linkText("Login"));
-		String loginAnswer = "Button";
-		if( login.getTagName().contentEquals( loginAnswer ) ) {
-			System.out.println("Login Button selected");
+		//find element by innerText of Create New Button
+		//Test: verify the element found is the Create New Account Anchor Tag I wanted
+		String cre = "Create New Account";
+		WebElement create = wd.findElement( By.linkText( cre ));
+		String createAnswer = "a";
+		System.out.println(create.getTagName());
+		if( create.getTagName().contentEquals( createAnswer ) ) {
+			System.out.println("Create New Account anchor tag Test Passed");
 		}
 		else	{
 			System.out.println(" uh oh something is wrong");
 		}
+		//name Example
+		//asdfasf
+		
 	}
 		
 }
-
-
