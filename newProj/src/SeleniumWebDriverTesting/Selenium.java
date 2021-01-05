@@ -2,6 +2,9 @@ package SeleniumWebDriverTesting;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 //comment the above line and uncomment below line to use Chrome
 //import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +27,7 @@ public class Selenium {
         driver.get(baseUrl);
     	titleTest(driver);
         locatorTests(driver);
+        findElementsTests(driver);
        
         //close Fire fox
         driver.close();
@@ -37,7 +41,7 @@ public class Selenium {
     	String expectedTitle = "Facebook - Log In or Sign Up";
         // get the actual value of the title
         String title = wd.getTitle();
-        System.out.println(title);
+        //System.out.println(title);
         /*
          * compare the actual title of the page with the expected one and print
          * the result as "Passed" or "Failed"
@@ -112,7 +116,7 @@ public class Selenium {
 		String cre = "Create New Account";
 		WebElement create = wd.findElement( By.linkText( cre ));
 		String createAnswer = "a";
-		System.out.println(create.getTagName());
+		//System.out.println(create.getTagName());
 		if( create.getTagName().contentEquals( createAnswer ) ) {
 			System.out.println("Create New Account anchor tag Test Passed");
 		}
@@ -120,8 +124,38 @@ public class Selenium {
 			System.out.println(" uh oh something is wrong");
 		}
 		//name Example
-		//asdfasf
-		
+		//Will duplicate test above because it contains name attribute and im lazy
+		String ema = "email";
+		WebElement e = wd.findElement(By.name(ema));
+		String emAnswer = e.getAttribute("value");
+		//System.out.println(select);
+		if(emAnswer.contentEquals(em))	{
+			System.out.println("Enter email Text Test -Name Edition- Passed");
+		}
+		else	{
+			System.out.println(" uh oh something is wrong");
+		}
+		//xpath Example
+		//
+		WebElement x = wd.findElement(By.xpath("//*[@id=\"pageFooterChildren\"]/ul/li[1]/a"));
+		String xA = x.getText();
+		System.out.println(xA);
+		if(xA.contentEquals("Sign Up"))	{
+			System.out.println("Sign Up Link in the bottom grid Test Passed");
+		}
+		else	{
+			System.out.println(" uh oh something is wrong");
+		}
+	}
+	
+	private static void findElementsTests( WebDriver wd )	{
+		//Example of getting list of elements
+		//findElements will return an empty list if nothing is found
+		//will return a list of WebElements that match the Locator
+		List<WebElement> listOfElements = wd.findElements(By.xpath("//*[@id=\"pageFooterChildren\"]/ul/li"));
+		for(int i=0; i < listOfElements.size(); i++) {
+		    System.out.println(listOfElements.get(i).getText());
+		}
 	}
 		
 }
